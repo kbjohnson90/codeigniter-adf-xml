@@ -1,0 +1,7 @@
+0.2.1
+
+* Added requestdate method for specifying date
+
+0.2.0
+
+* Reworked build logic using methods instead of properties
