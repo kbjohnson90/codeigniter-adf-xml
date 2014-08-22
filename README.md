@@ -13,6 +13,33 @@ Update _application/config/adf.php_
 ```php
 $this->load->library('adf');
 
-$this->adf->init($customer, $vehicle, $provider);
+$this->adf->customer('John Doe');
+
 $this->adf->send();
+```
+
+## Example
+
+```php
+$this->adf->vehicle(array(
+	'year' => '1967',
+	'make' => 'Chevrolet',
+	'model' => 'Camaro',
+	'comments' => 'This is a vehicle comment.'
+	), 'buy', 'used');
+
+//$this->adf->customer('John Doe');
+$this->adf->customer(array(
+	'first' => 'John', 'last' => 'Doe'
+	), 'This is a customer comment.');
+
+$this->adf->email('noreply@fakemail.fake');
+
+$this->adf->phone('111555555', 'voice', 'day');
+$this->adf->phone('222555555', 'voice', 'evening');
+
+$this->adf->address(array(
+	'street' => '123 Easy Street',
+	'postalcode' => '12345'
+	), 'home');
 ```
