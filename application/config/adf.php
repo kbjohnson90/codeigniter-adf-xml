@@ -8,9 +8,12 @@
 | specify default information for the adf xml specification
 */
 
-$config['dealer_name'] = '';
-$config['crm_email'] = array();
+$config['crm_email'] = array('');
 $config['from_email'] = '';
+
+$config['vendor_name'] = '';
+
+$config['provider_name'] = '';
 
 /* End of file adf.php */
 /* Location: ./application/config/adf.php */
