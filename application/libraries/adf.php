@@ -7,7 +7,7 @@
 *
 * @package codeigniter-adf-xml
 * @author Kyle B. Johnson (http://www.kylebjohnson.me)
-* @version 0.2.0
+* @version 0.2.1
 * @license The MIT License Copyright (c) 2014 Kyle B. Johnson
 */
 class Adf {
@@ -22,7 +22,7 @@ class Adf {
 		$this->adf = new SimpleXMLElement('<?adf version="1.0"?><adf/>');
 		$this->prospect = $this->adf->addChild('prospect');
 
-		$this->requestdate = $this->prospect->addChild('requestdate', date("c"));
+		$this->requestdate = $this->prospect->addChild('requestdate', date('c'));
 
 		$vendor = $this->ci->config->item('vendor_name', 'adf');
 		$this->vendor = $this->prospect->addChild('vendor')->addChild('vendorname', $vendor);
@@ -163,6 +163,14 @@ class Adf {
 	public function provider($name)
 	{
 		$this->provider = $this->prospect->addChild('provider')->addChild('name', $name);
+	}
+
+	/**
+	 * Add a requestdate to the prospect
+	 */
+	public function requestdate($date)
+	{
+		$this->requestdate = $this->prospect->addChild('requestdate', date('c', $date));
 	}
 
 }
