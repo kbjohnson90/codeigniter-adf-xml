@@ -7,7 +7,7 @@
 *
 * @package codeigniter-adf-xml
 * @author Kyle B. Johnson (http://www.kylebjohnson.me)
-* @version 0.2.1
+* @version 0.2.2
 * @license The MIT License Copyright (c) 2014 Kyle B. Johnson
 */
 class Adf {
