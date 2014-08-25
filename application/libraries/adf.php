@@ -88,7 +88,7 @@ class Adf {
 		}
 		else
 		{
-			$this->contact->addChild('name', $name);
+			$name = $this->contact->addChild('name', $name);
 			$name->addAttribute('part', 'full');
 		}
 
