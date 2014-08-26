@@ -22,13 +22,11 @@ class Adf {
 		$this->adf = new SimpleXMLElement('<?adf version="1.0"?><adf/>');
 		$this->prospect = $this->adf->addChild('prospect');
 
-		$this->requestdate = $this->prospect->addChild('requestdate', date('c'));
+		$this->requestdate_date = date('c');
 
-		$vendor = $this->ci->config->item('vendor_name', 'adf');
-		$this->vendor = $this->prospect->addChild('vendor')->addChild('vendorname', $vendor);
+		$this->vendor_name = $this->ci->config->item('vendor_name', 'adf');
 
-		$provider = $this->ci->config->item('provider_name', 'adf');
-		$this->provider = $this->prospect->addChild('provider')->addChild('name', $provider);
+		$this->provider_name = $this->ci->config->item('provider_name', 'adf');
 	}
 
 	/**
@@ -39,7 +37,7 @@ class Adf {
 	    $to = $this->ci->config->item('crm_email', 'adf');
 	    if (is_array($to)) $to = implode(',', $to);
 
-	    $subject = $this->provider->__toString(); //Promotion Title
+	    $subject = $this->provider_name; //Promotion Title
 
 	    $headers  = 'From: ' . $this->ci->config->item('from_email', 'adf') . "\r\n";
 	    $headers .= "xml version: 1.0" . "\r\n";
@@ -53,6 +51,9 @@ class Adf {
 	 */
 	public function xml()
 	{
+		$this->prospect->addChild('requestdate', $this->requestdate_date);
+		$this->prospect->addChild('vendor')->addChild('name', $this->vendor_name);
+		$this->prospect->addChild('provider')->addChild('name', $this->provider_name);		
 	    return $this->adf->saveXML();
 	}
 
@@ -154,7 +155,7 @@ class Adf {
 	 */
 	public function vendor($name)
 	{
-		$this->vendor = $this->prospect->addChild('vendor')->addChild('name', $name);
+		$this->vendor_name = $name;
 	}
 
 	/**
@@ -162,7 +163,7 @@ class Adf {
 	 */
 	public function provider($name)
 	{
-		$this->provider = $this->prospect->addChild('provider')->addChild('name', $name);
+		$this->provider_name = $name;
 	}
 
 	/**
@@ -170,7 +171,7 @@ class Adf {
 	 */
 	public function requestdate($date)
 	{
-		$this->requestdate = $this->prospect->addChild('requestdate', date('c', $date));
+		$this->requestdate_date = date('c', $date);
 	}
 
 }
