@@ -34,15 +34,15 @@ class Adf {
 	 */
 	public function send()
 	{
-	    $to = $this->ci->config->item('crm_email', 'adf');
-	    if (is_array($to)) $to = implode(',', $to);
-
-	    $subject = $this->provider_name; //Promotion Title
-
-	    $headers  = 'From: ' . $this->ci->config->item('from_email', 'adf') . "\r\n";
-	    $headers .= "xml version: 1.0" . "\r\n";
-	    $headers .= "Content-Type: application/xhtml+xml; encoding=ISO-8859-1" . "\r\n";
-
+		$to = $this->ci->config->item('crm_email', 'adf');
+		if (is_array($to)) $to = implode(',', $to);
+		
+		$subject = $this->provider_name; //Promotion Title
+		
+		$headers  = 'From: ' . $this->ci->config->item('from_email', 'adf') . "\r\n";
+		$headers .= "xml version: 1.0" . "\r\n";
+		$headers .= "Content-Type: application/xhtml+xml; encoding=ISO-8859-1" . "\r\n";
+		
 		return mail($to, $subject, $this->xml(), $headers);
 	}
 
@@ -54,7 +54,7 @@ class Adf {
 		$this->prospect->addChild('requestdate', $this->requestdate_date);
 		$this->prospect->addChild('vendor')->addChild('name', $this->vendor_name);
 		$this->prospect->addChild('provider')->addChild('name', $this->provider_name);		
-	    return $this->adf->saveXML();
+		return $this->adf->saveXML();
 	}
 
 	/**
@@ -64,7 +64,8 @@ class Adf {
 	{
 		$this->vehicle = $this->prospect->addChild('vehicle');
 		
-		foreach ($data as $key => $value) {
+		foreach ($data as $key => $value)
+		{
 			$this->vehicle->addChild($key, $value);
 		}
 
@@ -82,7 +83,8 @@ class Adf {
 
 		if (is_array($name))
 		{
-			foreach ($name as $part => $value) {
+			foreach ($name as $part => $value)
+			{
 				$name = $this->contact->addChild('name', $value);
 				$name->addAttribute('part', $part);
 			}
