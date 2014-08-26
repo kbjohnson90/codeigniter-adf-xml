@@ -69,8 +69,8 @@ class Adf {
 			$this->vehicle->addChild($key, $value);
 		}
 
-		if (isset($interest)) $this->vehicle->addAttribute('interest', $interest);
-		if (isset($status)) $this->vehicle->addAttribute('status', $status);
+		if ($interest) $this->vehicle->addAttribute('interest', $interest);
+		if ($status) $this->vehicle->addAttribute('status', $status);
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Adf {
 			$name->addAttribute('part', 'full');
 		}
 
-		if (isset($comments)) $this->customer->addChild('comments', $comments);
+		if ($comments) $this->customer->addChild('comments', $comments);
 
 		return $this;
 	}
@@ -117,8 +117,8 @@ class Adf {
 	{
 		$number = $this->contact->addChild('phone', $number);
 
-		if (isset($type)) $number->addAttribute('type', $type);
-		if (isset($time)) $number->addAttribute('time', $time);
+		if ($type) $number->addAttribute('type', $type);
+		if ($time) $number->addAttribute('time', $time);
 		if ($besttime) $number->addAttribute('besttime', true);
 
 		return $this;
@@ -147,7 +147,7 @@ class Adf {
 			}
 		}
 
-		if (isset($type)) $address->addAttribute('type', $type);
+		if ($type) $address->addAttribute('type', $type);
 
 		return $this;
 	}
